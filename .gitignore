@@ -1,0 +1,8 @@
+/RemoteSystemsTempFiles/*
+/.metadata/*
+/.recommenders/*
+.settings/
+.svn/
+.classpath
+.project
+/.git/*
