@@ -3,7 +3,9 @@ package com.nixsolutions.ponarin.validator;
 import com.nixsolutions.ponarin.entity.User;
 
 public class UserValidator {
-    public static void validate(final User user) {
+    private RoleValidator roleValidator = new RoleValidator();
+    
+    public void validate(final User user) {
         if (user.getLogin().length() == 0) {
             throw new IllegalArgumentException("Login is empty");
         }
@@ -16,6 +18,6 @@ public class UserValidator {
             throw new IllegalArgumentException("Email is empty");
         }
 
-        RoleValidator.validate(user.getRole());
+        roleValidator.validate(user.getRole());
     }
 }

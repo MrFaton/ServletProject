@@ -12,7 +12,7 @@ import org.slf4j.LoggerFactory;
 import com.nixsolutions.ponarin.dao.AbstractJdbsDao;
 import com.nixsolutions.ponarin.dao.RoleDao;
 import com.nixsolutions.ponarin.entity.Role;
-import com.nixsolutions.ponarin.validator.RoleValidator;
+import com.nixsolutions.ponarin.utils.DaoUtils;
 
 public class JdbcRoleDao extends AbstractJdbsDao implements RoleDao {
     private static final Logger logger = LoggerFactory
@@ -29,12 +29,16 @@ public class JdbcRoleDao extends AbstractJdbsDao implements RoleDao {
 
     private static final String SQL_SELECT = ""
             + "SELECT * FROM TRAINEESHIP_DB.ROLE";
-
+    
+    private DaoUtils daoUtils = new DaoUtils();
+    
     @Override
     public void create(Role role) {
         logger.trace("create " + role);
 
-        RoleValidator.validate(role);
+        if (role.getName().length() == 0) {
+            throw new IllegalArgumentException("Role's name is empty");
+        }
 
         Connection connection = null;
         PreparedStatement ps = null;
@@ -49,11 +53,10 @@ public class JdbcRoleDao extends AbstractJdbsDao implements RoleDao {
             connection.commit();
         } catch (SQLException e) {
             logger.error("Exception during creating " + role, e);
-            rollBackConnection(connection);
+            daoUtils.rollBackConnection(connection);
             throw new RuntimeException(e);
         } finally {
-            closeResource(ps);
-            closeResource(connection);
+            daoUtils.closeResources(ps, connection);
         }
     }
 
@@ -61,7 +64,9 @@ public class JdbcRoleDao extends AbstractJdbsDao implements RoleDao {
     public void update(Role role) {
         logger.trace("update " + role);
 
-        RoleValidator.validate(role);
+        if (role.getName().length() == 0) {
+            throw new IllegalArgumentException("Role's name is empty");
+        }
 
         Connection connection = null;
         PreparedStatement ps = null;
@@ -77,11 +82,10 @@ public class JdbcRoleDao extends AbstractJdbsDao implements RoleDao {
             connection.commit();
         } catch (SQLException e) {
             logger.error("Exception during updating " + role, e);
-            rollBackConnection(connection);
+            daoUtils.rollBackConnection(connection);
             throw new RuntimeException(e);
         } finally {
-            closeResource(ps);
-            closeResource(connection);
+            daoUtils.closeResources(ps, connection);
         }
     }
 
@@ -106,11 +110,10 @@ public class JdbcRoleDao extends AbstractJdbsDao implements RoleDao {
             connection.commit();
         } catch (SQLException e) {
             logger.error("Exception during removing " + role, e);
-            rollBackConnection(connection);
+            daoUtils.rollBackConnection(connection);
             throw new RuntimeException(e);
         } finally {
-            closeResource(ps);
-            closeResource(connection);
+            daoUtils.closeResources(ps, connection);
         }
     }
 
@@ -143,12 +146,10 @@ public class JdbcRoleDao extends AbstractJdbsDao implements RoleDao {
 
         } catch (SQLException e) {
             logger.error("Exception durin searching role by name = " + name, e);
-            rollBackConnection(connection);
+            daoUtils.rollBackConnection(connection);
             throw new RuntimeException(e);
         } finally {
-            closeResource(resultSet);
-            closeResource(statement);
-            closeResource(connection);
+            daoUtils.closeResources(resultSet, statement, connection);
         }
     }
 
@@ -176,12 +177,10 @@ public class JdbcRoleDao extends AbstractJdbsDao implements RoleDao {
             return role;
         } catch (SQLException e) {
             logger.error("Exception durin searching role by id = " + id, e);
-            rollBackConnection(connection);
+            daoUtils.rollBackConnection(connection);
             throw new RuntimeException(e);
         } finally {
-            closeResource(resultSet);
-            closeResource(statement);
-            closeResource(connection);
+            daoUtils.closeResources(resultSet, statement, connection);
         }
     }
 
@@ -192,25 +191,5 @@ public class JdbcRoleDao extends AbstractJdbsDao implements RoleDao {
         role.setName(resultSet.getString("NAME"));
 
         return role;
-    }
-
-    private void rollBackConnection(Connection connection) {
-        if (connection != null) {
-            try {
-                connection.rollback();
-            } catch (SQLException sqlEx) {
-                logger.error("Can't rollback connection", sqlEx);
-            }
-        }
-    }
-
-    private <T extends AutoCloseable> void closeResource(T resource) {
-        try {
-            if (resource != null) {
-                resource.close();
-            }
-        } catch (Exception ex) {
-            logger.error(ex.getMessage(), ex);
-        }
     }
 }

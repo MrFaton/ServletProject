@@ -4,14 +4,28 @@
           http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
 	version="2.5">
 
-	<filter>
-		<filter-name>loginFilter</filter-name>
-		<filter-class>com.nixsolutions.ponarin.filter.LoginFilter</filter-class>
-	</filter>
-	<filter-mapping>
-		<filter-name>loginFilter</filter-name>
-		<url-pattern>/*</url-pattern>
-	</filter-mapping>
+	<servlet>
+		<servlet-name>loginResolveController</servlet-name>
+		<servlet-class>com.nixsolutions.ponarin.controller.LoginResolveController</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>loginResolveController</servlet-name>
+		<url-pattern>/</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>logoutController</servlet-name>
+		<servlet-class>com.nixsolutions.ponarin.controller.LogoutController</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>logoutController</servlet-name>
+		<url-pattern>/logout.do</url-pattern>
+	</servlet-mapping>
+	
+	<listener>
+	<listener-class>com.nixsolutions.ponarin.listener.ShutdownListener</listener-class>
+	</listener>
+
 
 	<session-config>
 		<session-timeout>60</session-timeout>
