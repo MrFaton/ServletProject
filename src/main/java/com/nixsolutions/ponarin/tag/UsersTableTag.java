@@ -9,82 +9,77 @@ import javax.servlet.jsp.JspWriter;
 import javax.servlet.jsp.PageContext;
 import javax.servlet.jsp.tagext.SimpleTagSupport;
 
+import com.nixsolutions.ponarin.Constants;
 import com.nixsolutions.ponarin.dao.UserDao;
 import com.nixsolutions.ponarin.dao.impl.JdbcUserDao;
 import com.nixsolutions.ponarin.entity.User;
 
 public class UsersTableTag extends SimpleTagSupport {
-    private String aligin;
-    private int border;
-    private int cellpadding;
-    private int cellspacing;
+    private String group;
     private List<User> userList;
     private UserDao userDao = new JdbcUserDao();
 
     @Override
     public void doTag() throws JspException, IOException {
         userList = userDao.findAll();
-        
+
         PageContext pageContext = (PageContext) getJspContext();
         JspWriter out = pageContext.getOut();
         StringBuilder strBuilder = new StringBuilder();
-        
+
         strBuilder.append("<table>");
         strBuilder.append("<tr>");
-        
+
         strBuilder.append("<th>Login</th>");
         strBuilder.append("<th>First Name</th>");
         strBuilder.append("<th>Last Name</th>");
         strBuilder.append("<th>Age</th>");
         strBuilder.append("<th>Role</th>");
         strBuilder.append("<th>Actions</th>");
-        
+
         strBuilder.append("</tr>");
-        
+
         for (User user : userList) {
             strBuilder.append("<tr>");
-            strBuilder.append("<td>").append(user.getLogin()).append("</td>");
-            strBuilder.append("<td>").append(user.getFirstName()).append("</td>");
-            strBuilder.append("<td>").append(user.getLastName()).append("</td>");
-            strBuilder.append("<td>").append(getAge(user.getBirthDay())).append("</td>");
-            strBuilder.append("<td>").append(user.getRole().getName()).append("</td>");
-            
-            strBuilder.append("<td>");
-            
-        }
-        
-        for (Iterator<User> iterator = users.iterator(); iterator.hasNext();) {
-            User user = iterator.next();
-            strBuilder.append("<tr>");
             strBuilder.append("<td>" + user.getLogin() + "</td>");
-            strBuilder.append("<td>" + user.getEmail() + "</t"
-                    + ""
-                    + ""
-                    + ""
-                    
-                    
-                    strBuilder.append("</td>");
+            strBuilder.append("<td>" + user.getFirstName() + "</td>");
+            strBuilder.append("<td>" + user.getLastName() + "</td>");
+            strBuilder.append("<td>" + getAge(user.getBirthDay()) + "</td>");
+            strBuilder.append("<td>" + user.getRole().getName() + "</td>");
+
+            strBuilder.append("<td>");
+            strBuilder.append("<form action=\"" /*+ Constants.SERVLET_CREATE_EDIT*/
+                    + "\" method=\"post\">");
+            strBuilder.append(
+                    "<input type=\"hidden\" name=\"action\" value=\"edit\"/>");
+            strBuilder.append("<input type=\"hidden\" name=\"login\" value=\""
+                    + user.getLogin() + "\"/>");
+            strBuilder.append("<input type=\"submit\" value=\"Edit\"/>");
+            strBuilder.append("</form>");
+            
+            strBuilder.append("<form action=\"" /*+ Constants.SERVLET_CREATE_EDIT*/
+                    + "\" method=\"post\">");
+            strBuilder.append(
+                    "<input type=\"hidden\" name=\"action\" value=\"delete\"/>");
+            strBuilder.append("<input type=\"hidden\" name=\"login\" value=\""
+                    + user.getLogin() + "\"/>");
+            strBuilder.append("<input type=\"submit\" value=\"Edit\"/>");
+            strBuilder.append("</form>");
+            
             strBuilder.append("</tr>");
         }
-        strBuilder.append("</table>");      
-        writer.println(strBuilder.toString());
-        
+
+        strBuilder.append("</table>");
+        out.println(strBuilder.toString());
+
     }
 
-    public void setAligin(String aligin) {
-        this.aligin = aligin;
+    public String getGroup() {
+        return group;
     }
 
-    public void setBorder(int border) {
-        this.border = border;
-    }
-
-    public void setCellpadding(int cellpadding) {
-        this.cellpadding = cellpadding;
-    }
-
-    public void setCellspacing(int cellspacing) {
-        this.cellspacing = cellspacing;
+    public void setGroup(String group) {
+        this.group = group;
     }
 
     private int getAge(Date birthDay) {

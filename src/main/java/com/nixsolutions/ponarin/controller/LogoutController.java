@@ -11,6 +11,7 @@ import javax.servlet.http.HttpSession;
 import com.nixsolutions.ponarin.Constants;
 
 public class LogoutController extends HttpServlet{
+    private static final long serialVersionUID = 1L;
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp)
@@ -18,7 +19,7 @@ public class LogoutController extends HttpServlet{
         HttpSession session = req.getSession();
         if (session != null) {
             session.removeAttribute(Constants.ATTR_USER);
-            resp.sendRedirect(Constants.PAGE_LOGIN);
+            resp.sendRedirect(Constants.PAGE_MAIN);
         }
     }
     

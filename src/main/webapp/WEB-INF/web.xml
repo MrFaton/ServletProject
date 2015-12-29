@@ -4,13 +4,17 @@
           http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
 	version="2.5">
 
+	<welcome-file-list>
+		<welcome-file>login.jsp</welcome-file>
+	</welcome-file-list>
+
 	<servlet>
-		<servlet-name>loginResolveController</servlet-name>
-		<servlet-class>com.nixsolutions.ponarin.controller.LoginResolveController</servlet-class>
+		<servlet-name>userController</servlet-name>
+		<servlet-class>com.nixsolutions.ponarin.controller.UserController</servlet-class>
 	</servlet>
 	<servlet-mapping>
-		<servlet-name>loginResolveController</servlet-name>
-		<url-pattern>/</url-pattern>
+	<servlet-name>userController</servlet-name>
+	<url-pattern>/user.do</url-pattern>
 	</servlet-mapping>
 
 	<servlet>
@@ -21,9 +25,9 @@
 		<servlet-name>logoutController</servlet-name>
 		<url-pattern>/logout.do</url-pattern>
 	</servlet-mapping>
-	
+
 	<listener>
-	<listener-class>com.nixsolutions.ponarin.listener.ShutdownListener</listener-class>
+		<listener-class>com.nixsolutions.ponarin.listener.ShutdownListener</listener-class>
 	</listener>
 
 

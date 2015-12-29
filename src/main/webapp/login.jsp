@@ -8,15 +8,15 @@
 </head>
 <body>
 	<div style="margin: 10% 0px 0px 40%; border: 2px solid black; width: 400px;">
-		<form action="./" method="post">
+		<form action="./user.do" method="post">
 		<table align="center" border="0" cellpadding="2" cellspacing="5">
 		<tr>
 		<td>Login:</td>
-		<td><input type="text" name="login" required="true"></td>
+		<td><input type="text" name="login" required></td>
 		</tr>
 		<tr>
         <td>Password:</td>
-        <td><input type="password" name="password" required="true"></td>
+        <td><input type="password" name="password" required></td>
         </tr>
         <tr>
         <td colspan=2 align="right"><input type="submit" value="Sign in"></td>

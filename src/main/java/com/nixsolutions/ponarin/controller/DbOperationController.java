@@ -41,10 +41,10 @@ public class DbOperationController extends HttpServlet {
                 break;
             }
             default:
-                resp.sendRedirect(Constants.PAGE_ERROR_DB_UPDATE);
+//                resp.sendRedirect(Constants.PAGE_ERROR_DB_UPDATE);
             }
         } catch (IllegalArgumentException badUserEx) {
-            resp.sendRedirect(Constants.PAGE_ERROR_DB_UPDATE);
+//            resp.sendRedirect(Constants.PAGE_ERROR_DB_UPDATE);
         }
     }
 
