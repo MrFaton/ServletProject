@@ -4,17 +4,22 @@
           http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
 	version="2.5">
 
-	<welcome-file-list>
-		<welcome-file>login.jsp</welcome-file>
-	</welcome-file-list>
-
 	<servlet>
-		<servlet-name>userController</servlet-name>
-		<servlet-class>com.nixsolutions.ponarin.controller.UserController</servlet-class>
+		<servlet-name>authController</servlet-name>
+		<servlet-class>com.nixsolutions.ponarin.controller.AuthController</servlet-class>
 	</servlet>
 	<servlet-mapping>
-	<servlet-name>userController</servlet-name>
-	<url-pattern>/user.do</url-pattern>
+		<servlet-name>authController</servlet-name>
+		<url-pattern>/</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>loginController</servlet-name>
+		<servlet-class>com.nixsolutions.ponarin.controller.LoginController</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>loginController</servlet-name>
+		<url-pattern>/login.do</url-pattern>
 	</servlet-mapping>
 
 	<servlet>
@@ -25,6 +30,34 @@
 		<servlet-name>logoutController</servlet-name>
 		<url-pattern>/logout.do</url-pattern>
 	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>dbOperationController</servlet-name>
+		<servlet-class>com.nixsolutions.ponarin.controller.DbOperationController</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>dbOperationController</servlet-name>
+		<url-pattern>/admin/user_operations.do</url-pattern>
+	</servlet-mapping>
+
+	<filter>
+		<filter-name>authFilter</filter-name>
+		<filter-class>com.nixsolutions.ponarin.filter.AuthFilter</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>authFilter</filter-name>
+		<url-pattern>/*</url-pattern>
+		<dispatcher>REQUEST</dispatcher>
+	</filter-mapping>
+
+	<filter>
+		<filter-name>adminFilter</filter-name>
+		<filter-class>com.nixsolutions.ponarin.filter.AdminFilter</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>adminFilter</filter-name>
+		<url-pattern>/admin/*</url-pattern>
+	</filter-mapping>
 
 	<listener>
 		<listener-class>com.nixsolutions.ponarin.listener.ShutdownListener</listener-class>

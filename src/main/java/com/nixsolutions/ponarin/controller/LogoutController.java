@@ -8,19 +8,24 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import com.nixsolutions.ponarin.Constants;
 
-public class LogoutController extends HttpServlet{
+public class LogoutController extends HttpServlet {
+    private static final Logger logger = LoggerFactory
+            .getLogger(LogoutController.class);
     private static final long serialVersionUID = 1L;
 
     @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp)
-            throws ServletException, IOException {
-        HttpSession session = req.getSession();
+    protected void doGet(HttpServletRequest request,
+            HttpServletResponse response) throws ServletException, IOException {
+        logger.trace("inside doGet");
+        HttpSession session = request.getSession();
         if (session != null) {
             session.removeAttribute(Constants.ATTR_USER);
-            resp.sendRedirect(Constants.PAGE_MAIN);
+            response.sendRedirect(Constants.PAGE_LOGOUT);
         }
     }
-    
 }

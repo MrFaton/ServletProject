@@ -17,17 +17,31 @@
 		user
 	</h1>
 
-	<form action="./admin/user_operation.do" method="post">
-		<input type="hidden" name="action" value="create">
+	<c:if test="${error_message!=null}">
+		<p style="color: red;">Error: ${error_message}</p>
+	</c:if>
+
+	<form action="./user_operations.do" method="post">
+
+		<c:if test="${edit==null}">
+			<input type="hidden" name="action" value="create">
+		</c:if>
+
+		<c:if test="${edit!=null}">
+			<input type="hidden" name="action" value="update">
+		</c:if>
+
 		<table align="left" border="0" cellpadding="2" cellspacing="5">
 
 			<tr>
 				<td>Login</td>
 				<c:if test="${edit==null}">
-					<td><input type="text" name="login" required></td>
+					<td><input type="text" name="login"
+						value="${user_form['login']}" required></td>
 				</c:if>
 				<c:if test="${edit!=null}">
-					<td><input type="text" name="login" value="${user.login}"></td>
+					<td><input type="text" name="login" value="${user.login}"
+						readonly></td>
 				</c:if>
 			</tr>
 			<tr>
@@ -36,28 +50,32 @@
 			</tr>
 			<tr>
 				<td>Password again</td>
-				<td><input type="password" name="password_again" required></td>
+				<td><input type="password" name="confirm_password" required></td>
 			</tr>
 			<tr>
 				<td>Email</td>
-				<td><input type="text" name="email"required"></td>
+				<td><input type="text" name="email"
+					value="${user_form['email']}" required></td>
 			</tr>
 			<tr>
 				<td>First name</td>
-				<td><input type="text" name="first_name" required></td>
+				<td><input type="text" name="first_name"
+					value="${user_form['first_name']}" required></td>
 			</tr>
 			<tr>
 				<td>Last name</td>
-				<td><input type="text" name="last_name" required></td>
+				<td><input type="text" name="last_name"
+					value="${user_form['last_name']}" required></td>
 			</tr>
 			<tr>
 				<td>Birthday</td>
-				<td><input type="text" name="birthday" required></td>
+				<td><input type="text" name="birth_day"
+					value="${user_form['birth_day']}" required></td>
 			</tr>
 			<tr>
 				<td>Role</td>
 				<td><select size="1" name="role" required>
-						<option selected disabled>Choose role</option>
+						<option selected="selected">${user_form['role']}</option>
 						<option value="Admin">Admin</option>
 						<option value="User">User</option>
 				</select></td>
