@@ -24,6 +24,8 @@ public class UsersTableTag extends SimpleTagSupport {
         userList = userDao.findAll();
 
         PageContext pageContext = (PageContext) getJspContext();
+        String editControllerPath = pageContext.getServletContext()
+                .getContextPath() + "/admin/edit.do";
         JspWriter out = pageContext.getOut();
         StringBuilder strBuilder = new StringBuilder();
 
@@ -48,19 +50,22 @@ public class UsersTableTag extends SimpleTagSupport {
             strBuilder.append("<td>" + user.getRole().getName() + "</td>");
 
             strBuilder.append("<td>");
-            strBuilder.append("<form action=\"" /*+ Constants.SERVLET_CREATE_EDIT*/
+            strBuilder.append("<form action=\"" + editControllerPath
                     + "\" method=\"post\">");
             strBuilder.append("<div>");
             strBuilder.append(
                     "<input type=\"hidden\" name=\"action\" value=\"edit\"/>");
+            strBuilder.append(
+                    "<input type=\"hidden\" name=\"edit\" value=\"true\"/>");
             strBuilder.append("<input type=\"hidden\" name=\"login\" value=\""
                     + user.getLogin() + "\"/>");
             strBuilder.append("<input type=\"submit\" value=\"Edit\"/>");
             strBuilder.append("</div>");
             strBuilder.append("</form>");
-            
-            strBuilder.append("<form action=\"" /*+ Constants.SERVLET_CREATE_EDIT*/
-                    + "\" method=\"post\">");
+
+            strBuilder.append(
+                    "<form action=\"" /* + Constants.SERVLET_CREATE_EDIT */
+                            + "\" method=\"post\">");
             strBuilder.append("<div>");
             strBuilder.append(
                     "<input type=\"hidden\" name=\"action\" value=\"delete\"/>");
@@ -69,7 +74,7 @@ public class UsersTableTag extends SimpleTagSupport {
             strBuilder.append("<input type=\"submit\" value=\"Delete\"/>");
             strBuilder.append("</div>");
             strBuilder.append("</form>");
-            
+
             strBuilder.append("</tr>");
         }
 

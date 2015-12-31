@@ -42,17 +42,19 @@
 						value="${user_form['login']}" required></td>
 				</c:if>
 				<c:if test="${edit!=null}">
-					<td><input type="text" name="login" value="${user.login}"
-						readonly></td>
+					<td><input type="text" name="login"
+						value="${user_form['login']}" readonly></td>
 				</c:if>
 			</tr>
 			<tr>
 				<td>Password</td>
-				<td><input type="password" name="password" required></td>
+				<td><input type="password" name="password"
+					value="${user_form['password']}" required></td>
 			</tr>
 			<tr>
 				<td>Password again</td>
-				<td><input type="password" name="confirm_password" required></td>
+				<td><input type="password" name="confirm_password"
+					value="${user_form['confirm_password']}" required></td>
 			</tr>
 			<tr>
 				<td>Email</td>

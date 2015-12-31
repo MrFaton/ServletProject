@@ -5,11 +5,11 @@
 	version="2.5">
 
 	<servlet>
-		<servlet-name>authController</servlet-name>
-		<servlet-class>com.nixsolutions.ponarin.controller.AuthController</servlet-class>
+		<servlet-name>roleController</servlet-name>
+		<servlet-class>com.nixsolutions.ponarin.controller.RoleController</servlet-class>
 	</servlet>
 	<servlet-mapping>
-		<servlet-name>authController</servlet-name>
+		<servlet-name>roleController</servlet-name>
 		<url-pattern>/</url-pattern>
 	</servlet-mapping>
 
@@ -38,6 +38,15 @@
 	<servlet-mapping>
 		<servlet-name>dbOperationController</servlet-name>
 		<url-pattern>/admin/user_operations.do</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>editController</servlet-name>
+		<servlet-class>com.nixsolutions.ponarin.controller.EditController</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>editController</servlet-name>
+		<url-pattern>/admin/edit.do</url-pattern>
 	</servlet-mapping>
 
 	<filter>

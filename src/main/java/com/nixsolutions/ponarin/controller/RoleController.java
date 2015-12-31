@@ -14,9 +14,9 @@ import com.nixsolutions.ponarin.Constants;
 import com.nixsolutions.ponarin.entity.Role;
 import com.nixsolutions.ponarin.entity.User;
 
-public class AuthController extends HttpServlet {
+public class RoleController extends HttpServlet {
     private static final Logger logger = LoggerFactory
-            .getLogger(AuthController.class);
+            .getLogger(RoleController.class);
     private static final long serialVersionUID = 1L;
 
     @Override

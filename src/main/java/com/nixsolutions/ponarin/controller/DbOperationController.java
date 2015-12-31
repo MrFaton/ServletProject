@@ -37,6 +37,8 @@ public class DbOperationController extends HttpServlet {
         case "create": {
             try {
                 userService.create(userForm);
+                response.sendRedirect(
+                        request.getContextPath() + Constants.PAGE_MAIN);
             } catch (IllegalArgumentException badArg) {
                 request.setAttribute(Constants.ATTR_USER_FORM, userForm);
                 request.setAttribute(Constants.ATTR_ERROR_MESSAGE,

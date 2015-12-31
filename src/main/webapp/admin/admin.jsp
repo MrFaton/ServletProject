@@ -26,6 +26,8 @@ table, th, td {
 		<a href="<%=request.getContextPath()%>/admin/create_update_user.jsp">Add
 			new user</a>
 	</p>
-	<mytag:all_users_table />
+	<div align="center">
+		<mytag:all_users_table />
+	</div>
 </body>
 </html>
