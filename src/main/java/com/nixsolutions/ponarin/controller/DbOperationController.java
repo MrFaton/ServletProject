@@ -1,7 +1,6 @@
 package com.nixsolutions.ponarin.controller;
 
 import java.io.IOException;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -38,7 +37,7 @@ public class DbOperationController extends HttpServlet {
         case "create": {
             try {
                 userService.create(userForm);
-            } catch (Exception badArg) {
+            } catch (IllegalArgumentException badArg) {
                 request.setAttribute(Constants.ATTR_USER_FORM, userForm);
                 request.setAttribute(Constants.ATTR_ERROR_MESSAGE,
                         badArg.getMessage());

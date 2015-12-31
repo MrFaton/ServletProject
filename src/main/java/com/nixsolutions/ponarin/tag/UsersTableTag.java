@@ -50,20 +50,24 @@ public class UsersTableTag extends SimpleTagSupport {
             strBuilder.append("<td>");
             strBuilder.append("<form action=\"" /*+ Constants.SERVLET_CREATE_EDIT*/
                     + "\" method=\"post\">");
+            strBuilder.append("<div>");
             strBuilder.append(
                     "<input type=\"hidden\" name=\"action\" value=\"edit\"/>");
             strBuilder.append("<input type=\"hidden\" name=\"login\" value=\""
                     + user.getLogin() + "\"/>");
             strBuilder.append("<input type=\"submit\" value=\"Edit\"/>");
+            strBuilder.append("</div>");
             strBuilder.append("</form>");
             
             strBuilder.append("<form action=\"" /*+ Constants.SERVLET_CREATE_EDIT*/
                     + "\" method=\"post\">");
+            strBuilder.append("<div>");
             strBuilder.append(
                     "<input type=\"hidden\" name=\"action\" value=\"delete\"/>");
             strBuilder.append("<input type=\"hidden\" name=\"login\" value=\""
                     + user.getLogin() + "\"/>");
-            strBuilder.append("<input type=\"submit\" value=\"Edit\"/>");
+            strBuilder.append("<input type=\"submit\" value=\"Delete\"/>");
+            strBuilder.append("</div>");
             strBuilder.append("</form>");
             
             strBuilder.append("</tr>");

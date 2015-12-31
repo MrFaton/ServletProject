@@ -25,7 +25,8 @@ public class LogoutController extends HttpServlet {
         HttpSession session = request.getSession();
         if (session != null) {
             session.removeAttribute(Constants.ATTR_USER);
-            response.sendRedirect(Constants.PAGE_LOGOUT);
+            response.sendRedirect(
+                    request.getContextPath() + Constants.PAGE_LOGOUT);
         }
     }
 }

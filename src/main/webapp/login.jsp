@@ -8,8 +8,8 @@
 </head>
 <body>
 	<div
-		style="margin: 10% 0px 0px 40%; border: 2px solid black; width: 400px;">
-		<form action="./login.do" method="post">
+		style="margin: 10% 0px 0px 35%; border: 2px solid black; width: 400px;">
+		<form action="<%=request.getContextPath()%>/login.do" method="post">
 			<table align="center" border="0" cellpadding="2" cellspacing="5">
 				<tr>
 					<td>Login:</td>

@@ -9,7 +9,8 @@
 </head>
 <body>
 	<p align="right">
-		Admin ${user.firstName} (<a href="./logout.do">Logout</a>)
+		Admin ${user.firstName} (<a
+			href="<%=request.getContextPath()%>/logout.do">Logout</a>)
 	</p>
 	<h1>
 		<c:if test="${edit==null}">Add </c:if>
@@ -21,7 +22,8 @@
 		<p style="color: red;">Error: ${error_message}</p>
 	</c:if>
 
-	<form action="./user_operations.do" method="post">
+	<form action="<%=request.getContextPath()%>/admin/user_operations.do"
+		method="post">
 
 		<c:if test="${edit==null}">
 			<input type="hidden" name="action" value="create">
@@ -70,7 +72,7 @@
 			<tr>
 				<td>Birthday</td>
 				<td><input type="text" name="birth_day"
-					value="${user_form['birth_day']}" required></td>
+					value="${user_form['birth_day']}" placeholder="25-12-1990" required></td>
 			</tr>
 			<tr>
 				<td>Role</td>
