@@ -8,6 +8,7 @@
 		test="${edit!=null}">Edit </c:if> User</title>
 </head>
 <body>
+	<p>Action = ${action}</p>
 	<p align="right">
 		Admin ${user.firstName} (<a
 			href="<%=request.getContextPath()%>/logout.do">Logout</a>)
