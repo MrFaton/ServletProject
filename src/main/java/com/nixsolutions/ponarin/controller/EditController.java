@@ -46,6 +46,7 @@ public class EditController extends HttpServlet {
 
         if (user != null) {
             Map<String, String> userForm = getUserForm(user);
+            request.setAttribute("edit", true);
             request.setAttribute(Constants.ATTR_USER_FORM, userForm);
             request.getRequestDispatcher(Constants.PAGE_CREATE_UPDATE_USER)
                     .forward(request, response);

@@ -55,8 +55,6 @@ public class UsersTableTag extends SimpleTagSupport {
             strBuilder.append("<div>");
             strBuilder.append(
                     "<input type=\"hidden\" name=\"action\" value=\"edit\"/>");
-            strBuilder.append(
-                    "<input type=\"hidden\" name=\"edit\" value=\"true\"/>");
             strBuilder.append("<input type=\"hidden\" name=\"login\" value=\""
                     + user.getLogin() + "\"/>");
             strBuilder.append("<input type=\"submit\" value=\"Edit\"/>");

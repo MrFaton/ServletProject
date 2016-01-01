@@ -50,7 +50,7 @@ public class DbOperationController extends HttpServlet {
             break;
         }
         case "update": {
-            // userDao.update(user);
+            System.out.println("in update");
             break;
         }
         case "delete": {
