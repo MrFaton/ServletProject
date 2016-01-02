@@ -25,6 +25,13 @@ public class RoleController extends HttpServlet {
         logger.trace("inside doGet");
         User user = (User) request.getSession()
                 .getAttribute(Constants.ATTR_USER);
+
+        if (user == null) {
+            response.sendRedirect(
+                    request.getContextPath() + Constants.PAGE_LOGIN);
+            return;
+        }
+
         Role role = user.getRole();
 
         if (role.getName().equalsIgnoreCase(Constants.ROLE_ADMIN)) {

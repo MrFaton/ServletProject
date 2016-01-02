@@ -4,7 +4,7 @@
 	<groupId>com.nixsolutions.ponarin</groupId>
 	<artifactId>ServletProject</artifactId>
 	<packaging>war</packaging>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>1.1-SNAPSHOT</version>
 	<name>servlet_project</name>
 
 	<properties>
@@ -76,12 +76,13 @@
 			<groupId>javax.servlet.jsp</groupId>
 			<artifactId>jsp-api</artifactId>
 			<version>2.0</version>
+			<scope>provided</scope>
 		</dependency>
 
 	</dependencies>
 
 	<build>
-		<finalName>${name}</finalName>
+		<finalName>ServletProject</finalName>
 		<plugins>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
