@@ -5,6 +5,9 @@ import java.text.SimpleDateFormat;
 import java.util.List;
 import java.util.Map;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import com.nixsolutions.ponarin.dao.RoleDao;
 import com.nixsolutions.ponarin.dao.UserDao;
 import com.nixsolutions.ponarin.dao.impl.JdbcRoleDao;
@@ -12,45 +15,77 @@ import com.nixsolutions.ponarin.dao.impl.JdbcUserDao;
 import com.nixsolutions.ponarin.entity.Role;
 import com.nixsolutions.ponarin.entity.User;
 import com.nixsolutions.ponarin.service.UserService;
+import com.nixsolutions.ponarin.utils.UserUtils;
 import com.nixsolutions.ponarin.validator.UserFormValidator;
 
-public class JdbcUserService implements UserService{
+public class JdbcUserService implements UserService {
+    private static final Logger logger = LoggerFactory
+            .getLogger(JdbcUserService.class);
     private UserDao userDao = new JdbcUserDao();
     private RoleDao roleDao = new JdbcRoleDao();
     private UserFormValidator userFormValidator = new UserFormValidator();
+    private UserUtils userUtils = new UserUtils();
 
-    
     @Override
     public void create(User user) {
+        logger.trace("create user");
+        checkLogin(user.getLogin());
+        checkEmail(user.getEmail());
         userDao.create(user);
     }
 
     @Override
     public void create(Map<String, String> userForm) {
+        logger.trace("create user by user form");
         userFormValidator.validate(userForm);
-        User user = getUserByForm(userForm);
+        checkLogin(userForm.get("login"));
+        checkEmail(userForm.get("email"));
+        Role role = roleDao.findByName(userForm.get("role"));
+        User user = userUtils.getUserByForm(userForm, role.getId());
         userDao.create(user);
     }
 
     @Override
     public void update(User user) {
-        userDao.update(user);
+        logger.trace("update user");
+        User loadedUser = userDao.findByLogin(user.getLogin());
+        user.setId(loadedUser.getId());
+
+        if (loadedUser.getEmail().equalsIgnoreCase(user.getEmail())) {
+            userDao.update(user);
+        } else {
+            checkEmail(user.getEmail());
+            userDao.update(user);
+        }
     }
 
     @Override
     public void update(Map<String, String> userForm) {
+        logger.trace("update user by user form");
         userFormValidator.validate(userForm);
-        User user = getUserByForm(userForm);
-        userDao.update(user);
+        Role role = roleDao.findByName(userForm.get("role"));
+        User user = userUtils.getUserByForm(userForm, role.getId());
+
+        User loadedUser = userDao.findByLogin(user.getLogin());
+        user.setId(loadedUser.getId());
+
+        if (loadedUser.getEmail().equalsIgnoreCase(user.getEmail())) {
+            userDao.update(user);
+        } else {
+            checkEmail(user.getEmail());
+            userDao.update(user);
+        }
     }
 
     @Override
     public void remove(User user) {
+        logger.trace("remove user");
         userDao.remove(user);
     }
 
     @Override
     public void remove(String login) {
+        logger.trace("remove user by login: " + login);
         if (login == null || login.length() == 0) {
             throw new IllegalArgumentException("Login is blank");
         }
@@ -62,47 +97,35 @@ public class JdbcUserService implements UserService{
 
     @Override
     public List<User> findAll() {
+        logger.trace("find all users");
         return userDao.findAll();
     }
 
     @Override
     public User findByLogin(String login) {
+        logger.trace("find user by login: " + login);
         return userDao.findByLogin(login);
     }
 
     @Override
     public User findByEmail(String email) {
+        logger.trace("find user by email: " + email);
         return userDao.findByEmail(email);
     }
 
-    protected User getUserByForm(Map<String, String> userForm) {
-        User user = new User();
-        
-        user.setLogin(userForm.get("login"));
-        user.setPassword(userForm.get("password"));
-        user.setEmail(userForm.get("email"));
-        user.setFirstName(userForm.get("first_name"));
-        user.setLastName(userForm.get("last_name"));
-        
-        String birthDayStr = userForm.get("birth_day");
-        SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
-        try {
-            user.setBirthDay(dateFormat.parse(birthDayStr));
-        } catch (ParseException e) {
-            throw new IllegalArgumentException("Birthday date is incorrect. You shoud use pattern like: dd-MM-yyyy");
+    private void checkLogin(String login) {
+        if (userDao.findByLogin(login) != null) {
+            String msg = "User with login '" + login + "' already exists";
+            logger.debug(msg);
+            throw new IllegalArgumentException(msg);
         }
-        
-        String roleName = userForm.get("role").toString();
-        Role role = new Role();
-        try {
-            role.setName(roleName);
-            role.setId(roleDao.findByName(roleName).getId());
-        } catch (NumberFormatException badNum) {
-            throw new IllegalArgumentException("Role name is incorrect");
+    }
+
+    private void checkEmail(String email) {
+        if (userDao.findByEmail(email) != null) {
+            String msg = "User with email '" + email + "' already exists";
+            logger.debug(msg);
+            throw new IllegalArgumentException(msg);
         }
-
-        user.setRole(role);
-
-        return user;
     }
 }

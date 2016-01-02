@@ -35,6 +35,7 @@ public class LoginController extends HttpServlet {
             response.sendRedirect(
                     request.getContextPath() + Constants.PAGE_MAIN);
         } else {
+            logger.debug("Authorization fail for login: " + passedLogin);
             String title = "Authorisation error";
             String message = "User with login '" + passedLogin
                     + "' not found or password was incorrect";

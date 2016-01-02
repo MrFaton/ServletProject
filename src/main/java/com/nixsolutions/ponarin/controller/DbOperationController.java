@@ -26,39 +26,53 @@ public class DbOperationController extends HttpServlet {
     protected void doPost(HttpServletRequest request,
             HttpServletResponse response) throws ServletException, IOException {
         logger.trace("inside doPost");
+
         String action = request.getParameter("action");
 
+        @SuppressWarnings("unchecked")
         Map<String, String> userForm = normaliseParameterMap(
                 request.getParameterMap());
 
-        logger.trace("action for handling is " + action);
-
-        switch (action) {
-        case "create": {
-            try {
+        try {
+            switch (action) {
+            case "create": {
                 userService.create(userForm);
-                response.sendRedirect(
-                        request.getContextPath() + Constants.PAGE_MAIN);
-            } catch (IllegalArgumentException badArg) {
-                request.setAttribute(Constants.ATTR_USER_FORM, userForm);
-                request.setAttribute(Constants.ATTR_ERROR_MESSAGE,
-                        badArg.getMessage());
-                request.getRequestDispatcher(Constants.PAGE_CREATE_UPDATE_USER)
-                        .forward(request, response);
+                break;
             }
-
-            break;
-        }
-        case "update": {
-            System.out.println("in update");
-            break;
-        }
-        case "delete": {
-            // userDao.remove(user);
-            break;
-        }
-        default:
-            // response.sendRedirect(Constants.PAGE_ERROR_DB_UPDATE);
+            case "update": {
+                try {
+                    userService.update(userForm);
+                } catch (IllegalArgumentException argEx) {
+                    request.setAttribute("edit", true);
+                    throw argEx;
+                }
+                break;
+            }
+            case "delete": {
+                userService.remove(request.getParameter("login"));
+                break;
+            }
+            default:
+                String title = "Bad DB operation action";
+                String message = "The system doesn't have handler for action "
+                        + action;
+                request.setAttribute(Constants.ATTR_ERROR_MESSAGE_TITLE, title);
+                request.setAttribute(Constants.ATTR_ERROR_MESSAGE, message);
+                request.getRequestDispatcher(Constants.PAGE_ERROR)
+                        .forward(request, response);
+                return;
+            }
+            response.sendRedirect(
+                    request.getContextPath() + Constants.PAGE_MAIN);
+        } catch (IllegalArgumentException badArg) {
+            logger.debug(
+                    "Bad argument occurs during handling action: " + action,
+                    badArg);
+            request.setAttribute(Constants.ATTR_USER_FORM, userForm);
+            request.setAttribute(Constants.ATTR_ERROR_MESSAGE,
+                    badArg.getMessage());
+            request.getRequestDispatcher(Constants.PAGE_CREATE_UPDATE_USER)
+                    .forward(request, response);
         }
     }
 

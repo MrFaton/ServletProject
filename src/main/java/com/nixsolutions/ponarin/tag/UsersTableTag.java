@@ -1,6 +1,7 @@
 package com.nixsolutions.ponarin.tag;
 
 import java.io.IOException;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
@@ -9,7 +10,6 @@ import javax.servlet.jsp.JspWriter;
 import javax.servlet.jsp.PageContext;
 import javax.servlet.jsp.tagext.SimpleTagSupport;
 
-import com.nixsolutions.ponarin.Constants;
 import com.nixsolutions.ponarin.dao.UserDao;
 import com.nixsolutions.ponarin.dao.impl.JdbcUserDao;
 import com.nixsolutions.ponarin.entity.User;
@@ -26,6 +26,8 @@ public class UsersTableTag extends SimpleTagSupport {
         PageContext pageContext = (PageContext) getJspContext();
         String editControllerPath = pageContext.getServletContext()
                 .getContextPath() + "/admin/edit.do";
+        String dbOperationControllerPath = pageContext.getServletContext()
+                .getContextPath() + "/admin/user_operations.do";
         JspWriter out = pageContext.getOut();
         StringBuilder strBuilder = new StringBuilder();
 
@@ -61,15 +63,15 @@ public class UsersTableTag extends SimpleTagSupport {
             strBuilder.append("</div>");
             strBuilder.append("</form>");
 
-            strBuilder.append(
-                    "<form action=\"" /* + Constants.SERVLET_CREATE_EDIT */
-                            + "\" method=\"post\">");
+            strBuilder.append("<form action=\"" + dbOperationControllerPath
+                    + "\" method=\"post\">");
             strBuilder.append("<div>");
             strBuilder.append(
                     "<input type=\"hidden\" name=\"action\" value=\"delete\"/>");
             strBuilder.append("<input type=\"hidden\" name=\"login\" value=\""
                     + user.getLogin() + "\"/>");
-            strBuilder.append("<input type=\"submit\" value=\"Delete\"/>");
+            strBuilder.append("<input type=\"submit\" value=\"Delete\" "
+                    + "onclick=\"return confirm('Are you sure?');\"/>");
             strBuilder.append("</div>");
             strBuilder.append("</form>");
 
@@ -90,10 +92,17 @@ public class UsersTableTag extends SimpleTagSupport {
     }
 
     private int getAge(Date birthDay) {
-        long currentDateInMillis = System.currentTimeMillis();
-        long birthDayInMills = birthDay.getTime();
-        long difference = currentDateInMillis - birthDayInMills;
-        return (int) difference / (1000 * 60 * 60 * 24 * 30 * 12);
+        Calendar dateOfBirth = Calendar.getInstance();
+        dateOfBirth.setTime(birthDay);
+        Calendar today = Calendar.getInstance();
+        int age = today.get(Calendar.YEAR) - dateOfBirth.get(Calendar.YEAR);
+        if (today.get(Calendar.MONTH) < dateOfBirth.get(Calendar.MONTH)) {
+            age--;
+        } else if (today.get(Calendar.MONTH) == dateOfBirth.get(Calendar.MONTH)
+                && today.get(Calendar.DAY_OF_MONTH) < dateOfBirth
+                        .get(Calendar.DAY_OF_MONTH)) {
+            age--;
+        }
+        return age;
     }
-
 }

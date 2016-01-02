@@ -31,9 +31,17 @@ public class RoleController extends HttpServlet {
             logger.trace("forward to admin page");
             request.getRequestDispatcher(Constants.PAGE_ADMIN).forward(request,
                     response);
-        } else {
+        } else if (role.getName().equalsIgnoreCase(Constants.ROLE_USER)) {
             logger.trace("forward to user page");
             request.getRequestDispatcher(Constants.PAGE_USER).forward(request,
+                    response);
+        } else {
+            logger.debug("unknown role: " + role.getName());
+            String title = "Unknown role";
+            String message = "Passed role is unknown: " + role.getName();
+            request.setAttribute(Constants.ATTR_ERROR_MESSAGE_TITLE, title);
+            request.setAttribute(Constants.ATTR_ERROR_MESSAGE, message);
+            request.getRequestDispatcher(Constants.PAGE_ERROR).forward(request,
                     response);
         }
     }

@@ -3,12 +3,7 @@ package com.nixsolutions.ponarin.validator;
 import java.util.Calendar;
 import java.util.Map;
 
-import com.nixsolutions.ponarin.dao.UserDao;
-import com.nixsolutions.ponarin.dao.impl.JdbcUserDao;
-
 public class UserFormValidator {
-    private UserDao userDao = new JdbcUserDao();
-
     public void validate(Map<String, String> userForm) {
         String password = userForm.get("password");
         String cinfirmPassword = userForm.get("confirm_password");
@@ -30,18 +25,10 @@ public class UserFormValidator {
         if (login == null || login.length() == 0) {
             throw new IllegalArgumentException("Login is blank");
         }
-        if (userDao.findByLogin(login) != null) {
-            throw new IllegalArgumentException(
-                    "User with login '" + login + "' already exists");
-        }
 
         String email = userForm.get("email");
         if (email == null || email.length() == 0) {
             throw new IllegalArgumentException("Email is blank");
-        }
-        if (userDao.findByEmail(email) != null) {
-            throw new IllegalArgumentException(
-                    "User with email '" + email + "' already exists");
         }
 
         String firstName = userForm.get("first_name");

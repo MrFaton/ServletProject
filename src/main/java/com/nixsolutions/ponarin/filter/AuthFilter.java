@@ -12,10 +12,13 @@ import org.slf4j.LoggerFactory;
 
 import com.nixsolutions.ponarin.Constants;
 import com.nixsolutions.ponarin.entity.User;
+import com.nixsolutions.ponarin.service.UserService;
+import com.nixsolutions.ponarin.service.impl.JdbcUserService;
 
 public class AuthFilter extends BaseFilter {
     private static final Logger logger = LoggerFactory
             .getLogger(AuthFilter.class);
+    private UserService userService = new JdbcUserService();
 
     @Override
     public void doFilter(HttpServletRequest request,
@@ -38,6 +41,17 @@ public class AuthFilter extends BaseFilter {
 
         if (user != null) {
             logger.trace("request authorized by user " + user.getLogin());
+
+            User loadedUser = userService.findByLogin(user.getLogin());
+
+            if (!user.equals(loadedUser)) {
+                logger.debug("User '" + user.getLogin()
+                        + "' in session and the same user in DB are different! "
+                        + "Put into session user from DB.");
+                request.getSession().setAttribute(Constants.ATTR_USER,
+                        loadedUser);
+            }
+
             filterChain.doFilter(request, response);
         } else {
             logger.trace("request not authorized, redirect to login page");

@@ -1,23 +1,24 @@
 <%@page language="java" contentType="text/html" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<c:set var="action" />
+<c:if test="${edit==null}">
+	<c:set var="action" value="Add " />
+</c:if>
+<c:if test="${edit!=null}">
+	<c:set var="action" value="Edit " />
+</c:if>
 <!DOCTYPE html>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title><c:if test="${edit==null}">Add </c:if> <c:if
-		test="${edit!=null}">Edit </c:if> User</title>
+<title>${action}User</title>
 </head>
 <body>
-	<p>edit = ${edit}</p>
 	<p align="right">
 		Admin ${user.firstName} (<a
 			href="<%=request.getContextPath()%>/logout.do">Logout</a>)
 	</p>
-	<h1>
-		<c:if test="${edit==null}">Add </c:if>
-		<c:if test="${edit!=null}">Edit </c:if>
-		user
-	</h1>
+	<h1>${action}user</h1>
 
 	<c:if test="${error_message!=null}">
 		<p style="color: red;">Error: ${error_message}</p>

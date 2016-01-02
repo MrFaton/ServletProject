@@ -30,7 +30,8 @@ public class AdminFilter extends BaseFilter {
         } else {
             logger.trace("accsess denied for user " + user.getLogin());
             String title = "Access denied";
-            String message = "Access denied! You trying to access to page with role 'Admin'";
+            String message = "Access denied! "
+                    + "You trying to access on page with role 'Admin'";
             request.setAttribute(Constants.ATTR_ERROR_MESSAGE_TITLE, title);
             request.setAttribute(Constants.ATTR_ERROR_MESSAGE, message);
             request.getRequestDispatcher(Constants.PAGE_ERROR).forward(request,
