@@ -25,8 +25,6 @@ public class DbOperationController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request,
             HttpServletResponse response) throws ServletException, IOException {
-        logger.trace("inside doPost");
-
         String action = request.getParameter("action");
 
         @SuppressWarnings("unchecked")

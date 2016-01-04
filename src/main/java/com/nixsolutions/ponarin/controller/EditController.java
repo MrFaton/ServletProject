@@ -27,7 +27,6 @@ public class EditController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request,
             HttpServletResponse response) throws ServletException, IOException {
-        logger.trace("inside doPost");
         String login = request.getParameter(Constants.PARAM_LOGIN);
 
         User user = userService.findByLogin(login);

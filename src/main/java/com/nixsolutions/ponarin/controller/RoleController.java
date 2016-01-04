@@ -22,7 +22,6 @@ public class RoleController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request,
             HttpServletResponse response) throws ServletException, IOException {
-        logger.trace("inside doGet");
         User user = (User) request.getSession()
                 .getAttribute(Constants.ATTR_USER);
 

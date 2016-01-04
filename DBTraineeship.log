@@ -1,37 +1,37 @@
-27.12.2015 17:04:24 TRACE [main:] com.nixsolutions.ponarin.pool.JdbcConnectionPool -> getInstance (30): build connection pool
-27.12.2015 17:04:24 TRACE [main:] com.nixsolutions.ponarin.pool.JdbcConnectionPool -> loadProperties (89): load file with DB properties
-27.12.2015 17:04:24 TRACE [main:] com.nixsolutions.ponarin.dao.impl.JdbcUserDao -> findByLogin (169): find user by login = null
-27.12.2015 17:04:24 TRACE [main:] com.nixsolutions.ponarin.dao.impl.JdbcUserDao -> update (76): update null
-27.12.2015 17:04:24 TRACE [main:] com.nixsolutions.ponarin.dao.impl.JdbcUserDao -> create (43): create null
-27.12.2015 17:04:24 TRACE [main:] com.nixsolutions.ponarin.dao.impl.JdbcUserDao -> findAll (139): find all users
-27.12.2015 17:04:24 TRACE [main:] com.nixsolutions.ponarin.dao.impl.JdbcRoleDao -> findByRoleId (156): searching role by id = 1
-27.12.2015 17:04:24 TRACE [main:] com.nixsolutions.ponarin.dao.impl.JdbcRoleDao -> findByRoleId (156): searching role by id = 2
-27.12.2015 17:04:24 TRACE [main:] com.nixsolutions.ponarin.dao.impl.JdbcRoleDao -> findByRoleId (156): searching role by id = 3
-27.12.2015 17:04:24 TRACE [main:] com.nixsolutions.ponarin.dao.impl.JdbcUserDao -> create (43): create User [id=1, login=login1, password=, email=null, firstName=firstName1, lastName=lastName1, birthDay=Thu Nov 15 00:00:00 EET 1990, role=Role [id=1, name=role1]]
-27.12.2015 17:04:24 TRACE [main:] com.nixsolutions.ponarin.dao.impl.JdbcUserDao -> create (43): create User [id=1, login=login1, password=pass1, email=email1, firstName=firstName1, lastName=lastName1, birthDay=Thu Nov 15 00:00:00 EET 1990, role=Role [id=1, name=]]
-27.12.2015 17:04:24 TRACE [main:] com.nixsolutions.ponarin.dao.impl.JdbcUserDao -> findByEmail (208): find user by email = email1
-27.12.2015 17:04:24 TRACE [main:] com.nixsolutions.ponarin.dao.impl.JdbcRoleDao -> findByRoleId (156): searching role by id = 1
-27.12.2015 17:04:24 TRACE [main:] com.nixsolutions.ponarin.dao.impl.JdbcUserDao -> findByLogin (169): find user by login = login2
-27.12.2015 17:04:24 TRACE [main:] com.nixsolutions.ponarin.dao.impl.JdbcRoleDao -> findByRoleId (156): searching role by id = 2
-27.12.2015 17:04:24 TRACE [main:] com.nixsolutions.ponarin.dao.impl.JdbcUserDao -> remove (110): remove null
-27.12.2015 17:04:24 TRACE [main:] com.nixsolutions.ponarin.dao.impl.JdbcUserDao -> findByLogin (169): find user by login = 
-27.12.2015 17:04:24 TRACE [main:] com.nixsolutions.ponarin.dao.impl.JdbcUserDao -> findByEmail (208): find user by email = 
-27.12.2015 17:04:24 TRACE [main:] com.nixsolutions.ponarin.dao.impl.JdbcUserDao -> create (43): create User [id=2, login=login2, password=pass2, email=email2, firstName=firstName2, lastName=lastName2, birthDay=Tue Sep 05 00:00:00 EEST 1995, role=Role [id=2, name=role2]]
-27.12.2015 17:04:24 TRACE [main:] com.nixsolutions.ponarin.dao.impl.JdbcUserDao -> update (76): update User [id=1, login=login1, password=, email=null, firstName=firstName1, lastName=lastName1, birthDay=Thu Nov 15 00:00:00 EET 1990, role=Role [id=1, name=role1]]
-27.12.2015 17:04:24 TRACE [main:] com.nixsolutions.ponarin.dao.impl.JdbcUserDao -> update (76): update User [id=1, login=login1, password=pass1, email=email1, firstName=firstName1, lastName=lastName1, birthDay=Thu Nov 15 00:00:00 EET 1990, role=Role [id=1, name=]]
-27.12.2015 17:04:24 TRACE [main:] com.nixsolutions.ponarin.dao.impl.JdbcUserDao -> remove (110): remove User [id=null, login=login3, password=pass3, email=email3, firstName=firstName3, lastName=lastName3, birthDay=Mon Dec 18 00:00:00 EET 1989, role=Role [id=3, name=role3]]
-27.12.2015 17:04:24 TRACE [main:] com.nixsolutions.ponarin.dao.impl.JdbcUserDao -> findByEmail (208): find user by email = null
-27.12.2015 17:04:24 TRACE [main:] com.nixsolutions.ponarin.dao.impl.JdbcUserDao -> remove (110): remove User [id=3, login=login3, password=pass3, email=email3, firstName=firstName3, lastName=lastName3, birthDay=Mon Dec 18 00:00:00 EET 1989, role=Role [id=3, name=role3]]
-27.12.2015 17:04:24 TRACE [main:] com.nixsolutions.ponarin.dao.impl.JdbcUserDao -> update (76): update User [id=1, login=login55, password=pass55, email=email55, firstName=firstName55, lastName=lastName55, birthDay=Tue Mar 07 00:00:00 EET 1950, role=Role [id=3, name=role3]]
-27.12.2015 17:04:24 TRACE [main:] com.nixsolutions.ponarin.dao.impl.JdbcRoleDao -> update (62): update null
-27.12.2015 17:04:24 TRACE [main:] com.nixsolutions.ponarin.dao.impl.JdbcRoleDao -> create (35): create null
-27.12.2015 17:04:25 TRACE [main:] com.nixsolutions.ponarin.dao.impl.JdbcRoleDao -> findByName (119): searching for role by name = role3
-27.12.2015 17:04:25 TRACE [main:] com.nixsolutions.ponarin.dao.impl.JdbcRoleDao -> create (35): create Role [id=2, name=]
-27.12.2015 17:04:25 TRACE [main:] com.nixsolutions.ponarin.dao.impl.JdbcRoleDao -> findByName (119): searching for role by name = 
-27.12.2015 17:04:25 TRACE [main:] com.nixsolutions.ponarin.dao.impl.JdbcRoleDao -> findByRoleId (156): searching role by id = 1
-27.12.2015 17:04:25 TRACE [main:] com.nixsolutions.ponarin.dao.impl.JdbcRoleDao -> remove (90): remove null
-27.12.2015 17:04:25 TRACE [main:] com.nixsolutions.ponarin.dao.impl.JdbcRoleDao -> create (35): create Role [id=2, name=role2]
-27.12.2015 17:04:25 TRACE [main:] com.nixsolutions.ponarin.dao.impl.JdbcRoleDao -> update (62): update Role [id=2, name=]
-27.12.2015 17:04:25 TRACE [main:] com.nixsolutions.ponarin.dao.impl.JdbcRoleDao -> remove (90): remove Role [id=null, name=role1]
-27.12.2015 17:04:25 TRACE [main:] com.nixsolutions.ponarin.dao.impl.JdbcRoleDao -> remove (90): remove Role [id=2, name=role2]
-27.12.2015 17:04:25 TRACE [main:] com.nixsolutions.ponarin.dao.impl.JdbcRoleDao -> update (62): update Role [id=3, name=role55]
+04.01.2016 09:21:48 TRACE [main:] com.nixsolutions.ponarin.pool.JdbcConnectionPool -> getInstance (30): build connection pool
+04.01.2016 09:21:48 TRACE [main:] com.nixsolutions.ponarin.pool.JdbcConnectionPool -> loadProperties (89): load file with DB properties
+04.01.2016 09:21:48 TRACE [main:] com.nixsolutions.ponarin.dao.impl.JdbcRoleDao -> update (65): update null
+04.01.2016 09:21:48 TRACE [main:] com.nixsolutions.ponarin.dao.impl.JdbcRoleDao -> create (37): create null
+04.01.2016 09:21:48 TRACE [main:] com.nixsolutions.ponarin.dao.impl.JdbcRoleDao -> findByName (122): searching for role by name = role3
+04.01.2016 09:21:48 TRACE [main:] com.nixsolutions.ponarin.dao.impl.JdbcRoleDao -> create (37): create Role [id=2, name=]
+04.01.2016 09:21:48 TRACE [main:] com.nixsolutions.ponarin.dao.impl.JdbcRoleDao -> findByName (122): searching for role by name = 
+04.01.2016 09:21:48 TRACE [main:] com.nixsolutions.ponarin.dao.impl.JdbcRoleDao -> findByRoleId (157): searching role by id = 1
+04.01.2016 09:21:48 TRACE [main:] com.nixsolutions.ponarin.dao.impl.JdbcRoleDao -> remove (94): remove null
+04.01.2016 09:21:48 TRACE [main:] com.nixsolutions.ponarin.dao.impl.JdbcRoleDao -> create (37): create Role [id=2, name=role2]
+04.01.2016 09:21:48 TRACE [main:] com.nixsolutions.ponarin.dao.impl.JdbcRoleDao -> update (65): update Role [id=2, name=]
+04.01.2016 09:21:48 TRACE [main:] com.nixsolutions.ponarin.dao.impl.JdbcRoleDao -> remove (94): remove Role [id=null, name=role1]
+04.01.2016 09:21:48 TRACE [main:] com.nixsolutions.ponarin.dao.impl.JdbcRoleDao -> remove (94): remove Role [id=2, name=role2]
+04.01.2016 09:21:48 TRACE [main:] com.nixsolutions.ponarin.dao.impl.JdbcRoleDao -> update (65): update Role [id=3, name=role55]
+04.01.2016 09:21:48 TRACE [main:] com.nixsolutions.ponarin.dao.impl.JdbcUserDao -> findByLogin (168): find user by login = null
+04.01.2016 09:21:48 TRACE [main:] com.nixsolutions.ponarin.dao.impl.JdbcUserDao -> update (79): update null
+04.01.2016 09:21:48 TRACE [main:] com.nixsolutions.ponarin.dao.impl.JdbcUserDao -> create (47): create null
+04.01.2016 09:21:48 TRACE [main:] com.nixsolutions.ponarin.dao.impl.JdbcUserDao -> findAll (140): find all users
+04.01.2016 09:21:48 TRACE [main:] com.nixsolutions.ponarin.dao.impl.JdbcRoleDao -> findByRoleId (157): searching role by id = 1
+04.01.2016 09:21:48 TRACE [main:] com.nixsolutions.ponarin.dao.impl.JdbcRoleDao -> findByRoleId (157): searching role by id = 2
+04.01.2016 09:21:48 TRACE [main:] com.nixsolutions.ponarin.dao.impl.JdbcRoleDao -> findByRoleId (157): searching role by id = 3
+04.01.2016 09:21:48 TRACE [main:] com.nixsolutions.ponarin.dao.impl.JdbcUserDao -> create (47): create User [id=1, login=login1, password=, email=null, firstName=firstName1, lastName=lastName1, birthDay=Thu Nov 15 00:00:00 EEST 1990, role=Role [id=1, name=role1]]
+04.01.2016 09:21:48 TRACE [main:] com.nixsolutions.ponarin.dao.impl.JdbcUserDao -> create (47): create User [id=1, login=login1, password=pass1, email=email1, firstName=firstName1, lastName=lastName1, birthDay=Thu Nov 15 00:00:00 EEST 1990, role=Role [id=1, name=]]
+04.01.2016 09:21:48 TRACE [main:] com.nixsolutions.ponarin.dao.impl.JdbcUserDao -> findByEmail (205): find user by email = email1
+04.01.2016 09:21:48 TRACE [main:] com.nixsolutions.ponarin.dao.impl.JdbcRoleDao -> findByRoleId (157): searching role by id = 1
+04.01.2016 09:21:49 TRACE [main:] com.nixsolutions.ponarin.dao.impl.JdbcUserDao -> findByLogin (168): find user by login = login2
+04.01.2016 09:21:49 TRACE [main:] com.nixsolutions.ponarin.dao.impl.JdbcRoleDao -> findByRoleId (157): searching role by id = 2
+04.01.2016 09:21:49 TRACE [main:] com.nixsolutions.ponarin.dao.impl.JdbcUserDao -> remove (112): remove null
+04.01.2016 09:21:49 TRACE [main:] com.nixsolutions.ponarin.dao.impl.JdbcUserDao -> findByLogin (168): find user by login = 
+04.01.2016 09:21:49 TRACE [main:] com.nixsolutions.ponarin.dao.impl.JdbcUserDao -> findByEmail (205): find user by email = 
+04.01.2016 09:21:49 TRACE [main:] com.nixsolutions.ponarin.dao.impl.JdbcUserDao -> create (47): create User [id=2, login=login2, password=pass2, email=email2, firstName=firstName2, lastName=lastName2, birthDay=Tue Sep 05 00:00:00 EEST 1995, role=Role [id=2, name=role2]]
+04.01.2016 09:21:49 TRACE [main:] com.nixsolutions.ponarin.dao.impl.JdbcUserDao -> update (79): update User [id=1, login=login1, password=, email=null, firstName=firstName1, lastName=lastName1, birthDay=Thu Nov 15 00:00:00 EEST 1990, role=Role [id=1, name=role1]]
+04.01.2016 09:21:49 TRACE [main:] com.nixsolutions.ponarin.dao.impl.JdbcUserDao -> update (79): update User [id=1, login=login1, password=pass1, email=email1, firstName=firstName1, lastName=lastName1, birthDay=Thu Nov 15 00:00:00 EEST 1990, role=Role [id=1, name=]]
+04.01.2016 09:21:49 TRACE [main:] com.nixsolutions.ponarin.dao.impl.JdbcUserDao -> remove (112): remove User [id=null, login=login3, password=pass3, email=email3, firstName=firstName3, lastName=lastName3, birthDay=Mon Dec 18 00:00:00 EET 1989, role=Role [id=3, name=role3]]
+04.01.2016 09:21:49 TRACE [main:] com.nixsolutions.ponarin.dao.impl.JdbcUserDao -> findByEmail (205): find user by email = null
+04.01.2016 09:21:49 TRACE [main:] com.nixsolutions.ponarin.dao.impl.JdbcUserDao -> remove (112): remove User [id=3, login=login3, password=pass3, email=email3, firstName=firstName3, lastName=lastName3, birthDay=Mon Dec 18 00:00:00 EET 1989, role=Role [id=3, name=role3]]
+04.01.2016 09:21:49 TRACE [main:] com.nixsolutions.ponarin.dao.impl.JdbcUserDao -> update (79): update User [id=1, login=login55, password=pass55, email=email55, firstName=firstName55, lastName=lastName55, birthDay=Tue Mar 07 00:00:00 EET 1950, role=Role [id=3, name=role3]]

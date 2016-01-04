@@ -21,7 +21,6 @@ public class AdminFilter extends BaseFilter {
     public void doFilter(HttpServletRequest request,
             HttpServletResponse response, FilterChain filterChain)
                     throws IOException, ServletException {
-        logger.trace("inside doFilter");
         User user = (User) request.getSession()
                 .getAttribute(Constants.ATTR_USER);
         if (user.getRole().getName().equalsIgnoreCase(Constants.ROLE_ADMIN)) {

@@ -24,7 +24,6 @@ public class AuthFilter extends BaseFilter {
     public void doFilter(HttpServletRequest request,
             HttpServletResponse response, FilterChain filterChain)
                     throws IOException, ServletException {
-        logger.trace("inside doFilter");
         String servletPath = request.getServletPath();
 
         // Allow non authorized pages

@@ -7,3 +7,4 @@
 .project
 /.git/*
 /target/
+/DBTraineeship.log

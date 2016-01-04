@@ -21,7 +21,7 @@ public class LogoutController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request,
             HttpServletResponse response) throws ServletException, IOException {
-        logger.trace("inside doGet");
+        logger.trace("logout");
         HttpSession session = request.getSession(false);
         if (session != null) {
             session.removeAttribute(Constants.ATTR_USER);

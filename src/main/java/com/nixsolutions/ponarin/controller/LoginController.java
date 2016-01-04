@@ -24,7 +24,6 @@ public class LoginController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request,
             HttpServletResponse response) throws ServletException, IOException {
-        logger.trace("inside doPost");
         String passedLogin = request.getParameter("login");
         String passedPassword = request.getParameter("password");
 
