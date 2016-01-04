@@ -109,23 +109,29 @@ public class JdbcRoleDaoTest {
     public void testRemoveWithNull() {
         roleDao.remove(null);
     }
-    
+
     @Test(expected = IllegalArgumentException.class)
     public void testRemoveWithBadArg() {
         roles[0].setId(null);
         roleDao.remove(roles[0]);
     }
-    
+
     @Test
     public void testRemove() throws Exception {
         String afterRemove = "dataset/role/afterRemove.xml";
-        
+
         roleDao.remove(roles[1]);
-        
-        ITable expected = dbTestHelper.getTableFromFile(TABLE_NAME, afterRemove);
+
+        ITable expected = dbTestHelper.getTableFromFile(TABLE_NAME,
+                afterRemove);
         ITable actual = dbTestHelper.getTableFromSchema(TABLE_NAME);
-        
+
         assertEqualsIgnoreCols(expected, actual, IGNORE_COLS);
+    }
+
+    @Test(expected = NullPointerException.class)
+    public void testFindByNameWithNull() {
+        roleDao.findByName(null);
     }
 
     @Test(expected = IllegalArgumentException.class)
