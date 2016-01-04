@@ -29,9 +29,9 @@ public class JdbcRoleDao extends AbstractJdbsDao implements RoleDao {
 
     private static final String SQL_SELECT = ""
             + "SELECT * FROM TRAINEESHIP_DB.ROLE";
-    
+
     private DaoUtils daoUtils = new DaoUtils();
-    
+
     @Override
     public void create(Role role) {
         logger.trace("create " + role);
@@ -146,37 +146,6 @@ public class JdbcRoleDao extends AbstractJdbsDao implements RoleDao {
 
         } catch (SQLException e) {
             logger.error("Exception durin searching role by name = " + name, e);
-            daoUtils.rollBackConnection(connection);
-            throw new RuntimeException(e);
-        } finally {
-            daoUtils.closeResources(resultSet, statement, connection);
-        }
-    }
-
-    public Role findByRoleId(int id) {
-        logger.trace("searching role by id = " + id);
-
-        final String PREDICATE = "WHERE ROLE_ID = " + id + ";";
-        final String SQL = SQL_SELECT + " " + PREDICATE;
-
-        Connection connection = null;
-        Statement statement = null;
-        ResultSet resultSet = null;
-
-        try {
-            connection = createConnection();
-            statement = connection.createStatement();
-            resultSet = statement.executeQuery(SQL);
-
-            Role role = null;
-            if (resultSet.next()) {
-                role = createRoleByResultSet(resultSet);
-            }
-
-            connection.commit();
-            return role;
-        } catch (SQLException e) {
-            logger.error("Exception durin searching role by id = " + id, e);
             daoUtils.rollBackConnection(connection);
             throw new RuntimeException(e);
         } finally {

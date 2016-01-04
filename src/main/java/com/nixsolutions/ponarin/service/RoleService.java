@@ -10,6 +10,4 @@ public interface RoleService {
     void remove(Role role);
 
     Role findByName(String name);
-    
-    Role findById(int id);
 }

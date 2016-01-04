@@ -144,12 +144,4 @@ public class JdbcRoleDaoTest {
         Role role = roleDao.findByName(roles[2].getName());
         Assert.assertEquals("Roles must equals", roles[2], role);
     }
-
-    @Test
-    public void testFindById() {
-        JdbcRoleDao jdbcRoleDao = (JdbcRoleDao) roleDao;
-        Role role = jdbcRoleDao.findByRoleId(roles[0].getId());
-
-        Assert.assertEquals("Roles must equals", roles[0], role);
-    }
 }

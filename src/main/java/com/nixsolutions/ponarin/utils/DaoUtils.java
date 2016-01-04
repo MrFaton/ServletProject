@@ -7,8 +7,10 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 public class DaoUtils {
-    private static final Logger logger = LoggerFactory.getLogger(DaoUtils.class);
-    
+    private static final Logger logger = LoggerFactory
+            .getLogger(DaoUtils.class);
+
+    @SuppressWarnings("unchecked")
     public <T extends AutoCloseable> void closeResources(T... resources) {
         for (T resource : resources) {
             try {

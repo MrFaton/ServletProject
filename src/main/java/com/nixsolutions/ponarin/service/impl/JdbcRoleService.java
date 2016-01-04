@@ -36,12 +36,4 @@ public class JdbcRoleService implements RoleService {
         logger.trace("find by name: " + name);
         return roleDao.findByName(name);
     }
-
-    @Override
-    public Role findById(int id) {
-        logger.trace("find by id: " + id);
-        JdbcRoleDao jdbcRoleDao = (JdbcRoleDao) roleDao;
-        return jdbcRoleDao.findByRoleId(id);
-    }
-
 }
