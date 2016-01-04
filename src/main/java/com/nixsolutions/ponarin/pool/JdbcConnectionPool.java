@@ -97,7 +97,7 @@ public class JdbcConnectionPool {
             throw new RuntimeException(e);
         }
     }
-    
+
     public static void shutDown() {
         if (pool != null) {
             pool.shutdown();

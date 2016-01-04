@@ -31,6 +31,8 @@ public class DbOperationController extends HttpServlet {
         Map<String, String> userForm = normaliseParameterMap(
                 request.getParameterMap());
 
+        logger.trace("handle action: " + action);
+
         try {
             switch (action) {
             case "create": {
@@ -51,6 +53,7 @@ public class DbOperationController extends HttpServlet {
                 break;
             }
             default:
+                logger.warn("unknown action: " + action);
                 String title = "Bad DB operation action";
                 String message = "The system doesn't have handler for action "
                         + action;

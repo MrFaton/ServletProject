@@ -9,7 +9,7 @@ import com.nixsolutions.ponarin.entity.Role;
 import com.nixsolutions.ponarin.entity.User;
 
 public class UserUtils {
-    public User getUserByForm(Map<String, String> userForm, Integer roleId) {
+    public User getUserByForm(Map<String, String> userForm, Role role) {
         User user = new User();
 
         user.setLogin(userForm.get("login"));
@@ -26,12 +26,6 @@ public class UserUtils {
             throw new IllegalArgumentException(
                     "Birthday date is incorrect. You shoud use pattern like: dd-MM-yyyy");
         }
-
-        String roleName = userForm.get("role").toString();
-        Role role = new Role();
-        role.setName(roleName);
-        role.setId(roleId);
-
         user.setRole(role);
 
         return user;

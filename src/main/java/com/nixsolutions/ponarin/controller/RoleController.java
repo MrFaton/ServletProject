@@ -42,7 +42,7 @@ public class RoleController extends HttpServlet {
             request.getRequestDispatcher(Constants.PAGE_USER).forward(request,
                     response);
         } else {
-            logger.debug("unknown role: " + role.getName());
+            logger.warn("unknown role: " + role.getName());
             String title = "Unknown role";
             String message = "Passed role is unknown: " + role.getName();
             request.setAttribute(Constants.ATTR_ERROR_MESSAGE_TITLE, title);
