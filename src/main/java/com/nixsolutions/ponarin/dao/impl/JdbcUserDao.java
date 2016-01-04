@@ -25,13 +25,13 @@ public class JdbcUserDao extends AbstractJdbsDao implements UserDao {
 
     private static final String SQL_SAVE = ""
             + "INSERT INTO TRAINEESHIP_DB.USER "
-            + "(LOGIN, PASSWORD, EMAIL, FIRST_NAME, LAST_NAME, BIRTH_DAY, ROLE_NAME) "
+            + "(LOGIN, PASSWORD, EMAIL, FIRST_NAME, LAST_NAME, BIRTH_DAY, ROLE_ID) "
             + "VALUES (?, ?, ?, ?, ?, ?, ?);";
 
     private static final String SQL_UPDATE = ""
             + "UPDATE TRAINEESHIP_DB.USER SET "
             + "LOGIN = ?, PASSWORD = ?, EMAIL = ?, FIRST_NAME = ?, "
-            + "LAST_NAME = ?, BIRTH_DAY = ?, ROLE_NAME = ? "
+            + "LAST_NAME = ?, BIRTH_DAY = ?, ROLE_ID = ? "
             + "WHERE USER_ID = ?;";
 
     private static final String SQL_DELETE = ""
@@ -39,7 +39,7 @@ public class JdbcUserDao extends AbstractJdbsDao implements UserDao {
 
     private static final String SQL_SELECT = ""
             + "SELECT * FROM TRAINEESHIP_DB.USER "
-            + "INNER JOIN TRAINEESHIP_DB.ROLE ON USER.ROLE_NAME = ROLE.NAME";
+            + "INNER JOIN TRAINEESHIP_DB.ROLE ON USER.ROLE_ID = ROLE.ROLE_ID";
 
     private UserValidator userValidator = new UserValidator();
     private DaoUtils daoUtils = new DaoUtils();
@@ -63,7 +63,7 @@ public class JdbcUserDao extends AbstractJdbsDao implements UserDao {
             ps.setString(4, user.getFirstName());
             ps.setString(5, user.getLastName());
             ps.setDate(6, new java.sql.Date(user.getBirthDay().getTime()));
-            ps.setString(7, user.getRole().getName());
+            ps.setInt(7, user.getRole().getId());
 
             ps.executeUpdate();
             connection.commit();
@@ -95,7 +95,7 @@ public class JdbcUserDao extends AbstractJdbsDao implements UserDao {
             ps.setString(4, user.getFirstName());
             ps.setString(5, user.getLastName());
             ps.setDate(6, new java.sql.Date(user.getBirthDay().getTime()));
-            ps.setString(7, user.getRole().getName());
+            ps.setInt(7, user.getRole().getId());
             ps.setLong(8, user.getId());
 
             ps.executeUpdate();
@@ -253,7 +253,7 @@ public class JdbcUserDao extends AbstractJdbsDao implements UserDao {
 
         Role role = new Role();
         role.setId(resultSet.getInt("ROLE_ID"));
-        role.setName(resultSet.getString("ROLE_NAME"));
+        role.setName(resultSet.getString("NAME"));
         user.setRole(role);
 
         return user;

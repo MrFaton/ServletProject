@@ -1,6 +1,9 @@
 package com.nixsolutions.ponarin.entity;
 
-public class Role {
+import java.io.Serializable;
+
+public class Role implements Serializable {
+    private static final long serialVersionUID = 1L;
     private Integer id;
     private String name;
 
