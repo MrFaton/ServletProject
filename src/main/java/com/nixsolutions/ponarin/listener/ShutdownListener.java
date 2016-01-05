@@ -5,7 +5,6 @@ import javax.servlet.ServletContextListener;
 
 import com.nixsolutions.ponarin.pool.JdbcConnectionPool;
 
-
 public class ShutdownListener implements ServletContextListener {
 
     @Override

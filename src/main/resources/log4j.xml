@@ -21,7 +21,7 @@
 		</layout>
 	</appender>
 
-	<logger name="com">
+	<logger name="com.nixsolutions.ponarin">
 		<level value="trace" />
 		<appender-ref ref="file" />
 	</logger>

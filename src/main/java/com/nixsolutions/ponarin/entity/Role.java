@@ -2,7 +2,7 @@ package com.nixsolutions.ponarin.entity;
 
 import java.io.Serializable;
 
-public class Role {
+public class Role implements Serializable {
     private static final long serialVersionUID = 1L;
     private Integer id;
     private String name;
