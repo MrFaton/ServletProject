@@ -3,7 +3,7 @@ package com.nixsolutions.ponarin.entity;
 import java.io.Serializable;
 import java.util.Date;
 
-public class User implements Serializable {
+public class User {
     private static final long serialVersionUID = 1L;
     private Long id;
     private String login;
