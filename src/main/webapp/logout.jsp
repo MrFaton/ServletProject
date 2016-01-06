@@ -9,7 +9,7 @@
 <body>
 	<p>
 		You successfully logout. Now you can <a
-			href="<%=request.getContextPath()%>/login.jsp">login</a>.
+			href="${pageContext.request.contextPath}/login.jsp">login</a>.
 	</p>
 </body>
 </html>

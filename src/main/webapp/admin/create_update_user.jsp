@@ -16,7 +16,7 @@
 <body>
 	<p align="right">
 		Admin ${user.firstName} (<a
-			href="<%=request.getContextPath()%>/logout.do">Logout</a>)
+			href="${pageContext.request.contextPath}/logout.do">Logout</a>)
 	</p>
 	<h1>${action}user</h1>
 
@@ -24,7 +24,7 @@
 		<p style="color: red;">Error: ${error_message}</p>
 	</c:if>
 
-	<form action="<%=request.getContextPath()%>/admin/user_operations.do"
+	<form action="${pageContext.request.contextPath}/admin/user_operations.do"
 		method="post">
 
 		<c:if test="${edit==null}">

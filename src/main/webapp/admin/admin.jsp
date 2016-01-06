@@ -20,10 +20,10 @@ table, th, td {
 <body>
 	<p align="right">
 		Admin ${user.firstName} (<a
-			href="<%=request.getContextPath()%>/logout.do">Logout</a>)
+			href="${pageContext.request.contextPath}/logout.do">Logout</a>)
 	</p>
 	<p>
-		<a href="<%=request.getContextPath()%>/admin/create_update_user.jsp">Add
+		<a href="${pageContext.request.contextPath}/admin/create_update_user.jsp">Add
 			new user</a>
 	</p>
 	<div align="center">

@@ -9,7 +9,7 @@
 	<h1>Hello, ${user.login}!</h1>
 	<br>
 	<p>
-		Click <a href="<%=request.getContextPath()%>/logout.do">here</a> to
+		Click <a href="${pageContext.request.contextPath}/logout.do">here</a> to
 		logout
 	</p>
 </body>

@@ -7,6 +7,6 @@
 </head>
 <body style = "color: red; text-align: center;">
     <h2>${error_message}</h2>
-    <h4>Go to <a href="<%=request.getContextPath()%>">main</a> page</h4>
+    <h4>Go to <a href="${pageContext.request.contextPath}">main</a> page</h4>
 </body>
 </html>
