@@ -27,7 +27,7 @@ table, th, td {
 			new user</a>
 	</p>
 	<div align="center">
-		<mytag:all_users_table />
+		<mytag:all_users_table userList="${userList}"/>
 	</div>
 </body>
 </html>

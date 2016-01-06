@@ -13,11 +13,14 @@ import org.slf4j.LoggerFactory;
 import com.nixsolutions.ponarin.Constants;
 import com.nixsolutions.ponarin.entity.Role;
 import com.nixsolutions.ponarin.entity.User;
+import com.nixsolutions.ponarin.service.UserService;
+import com.nixsolutions.ponarin.service.impl.JdbcUserService;
 
 public class RoleController extends HttpServlet {
     private static final Logger logger = LoggerFactory
             .getLogger(RoleController.class);
     private static final long serialVersionUID = 1L;
+    private UserService userService = new JdbcUserService();
 
     @Override
     protected void doGet(HttpServletRequest request,
@@ -35,6 +38,7 @@ public class RoleController extends HttpServlet {
 
         if (role.getName().equalsIgnoreCase(Constants.ROLE_ADMIN)) {
             logger.trace("forward to admin page");
+            request.setAttribute("userList", userService.findAll());
             request.getRequestDispatcher(Constants.PAGE_ADMIN).forward(request,
                     response);
         } else if (role.getName().equalsIgnoreCase(Constants.ROLE_USER)) {

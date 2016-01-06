@@ -11,16 +11,12 @@ import javax.servlet.jsp.PageContext;
 import javax.servlet.jsp.tagext.SimpleTagSupport;
 
 import com.nixsolutions.ponarin.entity.User;
-import com.nixsolutions.ponarin.service.UserService;
-import com.nixsolutions.ponarin.service.impl.JdbcUserService;
 
 public class UsersTableTag extends SimpleTagSupport {
-    private UserService userService = new JdbcUserService();
+    private List<User> userList;
 
     @Override
     public void doTag() throws JspException, IOException {
-        List<User> userList = userService.findAll();
-
         PageContext pageContext = (PageContext) getJspContext();
         String editControllerPath = pageContext.getServletContext()
                 .getContextPath() + "/admin/edit.do";
@@ -79,6 +75,10 @@ public class UsersTableTag extends SimpleTagSupport {
         strBuilder.append("</table>");
         out.println(strBuilder.toString());
 
+    }
+
+    public void setUserList(List<User> userList) {
+        this.userList = userList;
     }
 
     private int getAge(Date birthDay) {

@@ -12,5 +12,10 @@
 		<tag-class>com.nixsolutions.ponarin.tag.UsersTableTag</tag-class>
 		<body-content>empty</body-content>
 		<description>This tag is for displaying all users from db in table</description>
+		<attribute>
+			<name>userList</name>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
 	</tag>
 </taglib>
